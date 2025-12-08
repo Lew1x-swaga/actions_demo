@@ -224,5 +224,38 @@ class Library:
         return None
                 
 
-if __name__ == "__main__":
-    print("2 + 3 =", (2 + 3))
+if __name__ == '__main__':
+    lib = Library()
+
+    # --- создаём книги ---
+    b1 = PrintedBook("Война и мир", "Толстой", 1869, 1225, "хорошая")
+    b2 = EBook("Мастер и Маргарита", "Булгаков", 1966, 5, "epub")
+    b3 = PrintedBook("Преступление и наказание", "Достоевский", 1866, 480, "плохая")
+
+    # --- создаём пользователей ---
+    user1 = User("Анна")
+    librarian = Librarian("Мария")
+
+    # --- библиотекарь добавляет книги ---
+    librarian.add_book(lib, b1)
+    librarian.add_book(lib, b2)
+    librarian.add_book(lib, b3)
+
+    # --- библиотекарь регистрирует пользователя ---
+    librarian.register_user(lib, user1)
+
+    # --- пользователь берёт книгу ---
+    lib.lend_book("Война и мир", "Анна")
+
+    # --- пользователь смотрит свои книги ---
+    user1.show_books()
+
+    # --- возвращает книгу ---
+    lib.return_book("Война и мир", "Анна")
+
+    # --- электронная книга ---
+    b2.download()
+
+    # --- ремонт книги ---
+    b3.repair()
+    print(b3)
